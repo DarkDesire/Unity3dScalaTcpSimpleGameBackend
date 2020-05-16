@@ -1,0 +1,189 @@
+syntax = "proto3";
+
+message PacketMSG
+{
+    int32 cmd   = 1;
+    bytes data  = 2;
+}
+
+message PacketLogin
+{
+   string email = 1;
+   string pass  = 2;
+}
+
+message PacketLoginSuccess
+{
+}
+
+message PacketLoginFailed
+{
+}
+
+message PacketSetFamilyRequest
+{
+}
+
+message PacketSetFamily
+{
+    string family = 1;
+}
+
+message PacketSetFamilySuccess
+{
+}
+
+message PacketSetFamilyFailed
+{
+}
+
+message PacketPreviewAvatar
+{
+    int32 avatarId = 1;
+    string name = 2;
+    int32 level = 3;
+}
+
+message PacketPreviewAvatars
+{
+    repeated PacketPreviewAvatar avatars = 1;
+    int32 createdAvatars = 2;
+    int32 availableAvatars = 3;
+    int32 maxAvatars = 4;
+}
+message PacketSetNewAvatar
+{
+    string name = 1;
+}
+
+message PacketSetNewAvatarSuccess
+{
+}
+
+message PacketSetNewAvatarFailed
+{
+}
+
+message PacketJoinToChannel
+{
+    int32 avatarId = 1;
+    int32 channelId = 2;
+}
+
+message PacketPosition
+{
+    float x = 1;
+    float y = 2;
+    float z = 3;
+}
+
+message PacketRotation
+{
+    float pitch = 1;
+    float yaw = 2;
+}
+
+message PacketTransform
+{
+    PacketPosition position = 1;
+    PacketRotation rotation = 2;
+}
+
+message PacketHealth
+{
+    int32 current = 1;
+    int32 maximum = 2;
+    bool isDead = 3;
+}
+
+message PacketManna
+{
+    int32 current = 1;
+    int32 maximum = 2;
+}
+
+message PacketAvatar
+{
+    int32 avatarId = 1;
+    int32 familyId = 2;
+    string familyName = 3;
+    string name = 4;
+    int32 level = 5;
+    PacketTransform transform = 6;
+    int32 animState = 7;
+    PacketHealth health = 8;
+    PacketManna manna = 9;
+    int32 type = 10;
+}
+
+message PacketAvatars
+{
+    repeated PacketAvatar avatars = 1;
+}
+
+message PacketJoinedAvatar
+{
+    PacketAvatar avatar = 1;
+}
+
+message PacketAvatarMove
+{
+    PacketAvatar avatar = 1;
+}
+
+message PacketAvatarAnimChange
+{
+    PacketAvatar avatar = 1;
+}
+
+message PacketShoot
+{
+    PacketPosition shootEndPosition = 1;
+}
+
+message PacketShootToAvatar
+{
+    int32 avatarId = 1;
+}
+
+message PacketShootSuccess
+{
+    PacketAvatar senderAvatar = 1;
+    PacketPosition shootEndPosition = 2;
+}
+
+message PacketShootToAvatarSuccess
+{
+     int32 senderShootAvatarId = 1;
+     int32 receiverShootAvatarId = 2;
+}
+
+message PacketShootFailed
+{
+}
+
+message PacketKilledBy
+{
+    int32 victimAvatarId = 1;
+    int32 killerAvatarId = 2;
+}
+
+message PacketRespawn
+{
+    PacketAvatar avatar = 1;
+}
+
+message PacketAvatarLeft
+{
+    int32 avatarId = 1;
+}
+
+message PacketBanned
+{
+    int32 banTime       = 1;
+    int32 banDuration   = 2;
+}
+
+message PacketDisconnect
+{
+}
